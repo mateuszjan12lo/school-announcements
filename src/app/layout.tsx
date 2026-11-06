@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "SchoolPulse – ogłoszenia szkolne",
   description: "Proste ogłoszenia szkolne z terminami i dodawaniem do kalendarza.",
   manifest: "/manifest.webmanifest",
+  icons: { icon: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }], apple: "/apple-touch-icon.png" },
   appleWebApp: { capable: true, title: "SchoolPulse", statusBarStyle: "default" },
   robots: { index: true, follow: true },
 };

@@ -14,6 +14,7 @@ Technologia: Next.js 16 (App Router) + TypeScript + Tailwind, **Supabase** (Auth
 | `/` | publiczna lista ogłoszeń (przypięte na górze, filtr klasy, stronicowanie po 20) |
 | `/admin/logowanie` → `/admin` | logowanie i panel administratora |
 | `/ogloszenia/<id>/kalendarz.ics` | pobranie terminu do kalendarza |
+| `/instalacja` | strona instalacji PWA z kodem QR: przycisk „Zainstaluj” na Androidzie, instrukcja „Udostępnij → Dodaj do ekranu początkowego” na iPhonie |
 | `/api/health` | sprawdzenie, że aplikacja działa |
 
 ## Szybki start (lokalnie)
@@ -36,6 +37,7 @@ Konto testowe (tylko `develop`): [DEMO_ACCOUNTS.md](DEMO_ACCOUNTS.md). Panel: ht
 | `npm run test:rls` | testy autoryzacji na prawdziwej bazie (lokalny Supabase) |
 | `npm run test:security` | reguły produkcji + kontrola skryptu + testy RLS |
 | `npm run test:e2e` | seed + testy Playwright (przepływy, panel, dostępność, RWD) |
+| `npm run test:install` | testy strony instalacji (iPhone/Android/komputer, kod QR, ikony PNG; bez bazy) |
 | `npm run test:prod` | testy zbudowanej wersji produkcyjnej (po `npm run build`) |
 | `npm run check:main` / `prepare:main` | kontrola / przygotowanie drzewa gałęzi `main` |
 | `npm run verify:prod-db` | sprawdza, że w produkcyjnej bazie nie ma kont deweloperskich |

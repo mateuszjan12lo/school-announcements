@@ -23,6 +23,12 @@ Uwaga: Docker Desktop potrzebuje ok. 6–8 GB wolnego miejsca w „Disk image si
   - *Klasy:* dodaj klasę; klasy z ogłoszeniami nie da się usunąć.
   - Ogłoszenie z wygaśnięciem za minutę zniknie z listy publicznej, a w panelu dostanie etykietę „Wygasło”.
 
+- **Instalacja jako aplikacja:** otwórz `/instalacja` (odnośnik „Zainstaluj aplikację na telefonie” jest na dole strony głównej). Na komputerze zobaczysz kod QR do wydruku (Ctrl/Cmd + P).
+  - **Android (Chrome):** zeskanuj kod aparatem; przycisk „📲 Zainstaluj aplikację” otwiera natywne okno instalacji. Jeśli przycisku nie ma, strona pokazuje instrukcję z menu ⋮.
+  - **iPhone/iPad (Safari):** strona pokazuje 4 kroki: Udostępnij → „Dodaj do ekranu początkowego” → „Dodaj”. Apple nie pozwala uruchomić instalacji z kodu.
+  - Po instalacji (uruchomienie z ikony) strona pokazuje „Aplikacja jest już zainstalowana”.
+  - Instalacja wymaga HTTPS (Vercel go ma) albo `localhost`. Na telefonie w sieci lokalnej po zwykłym `http://IP:3000` Chrome nie zaoferuje instalacji.
+
 ## 3. Sprawdzanie zabezpieczeń
 1. Bez logowania wejdź na `/admin` lub `/admin/nowe` → przekierowanie na logowanie.
 2. Zły e-mail/hasło → ten sam komunikat; po 5 próbach blokada na 15 minut.
@@ -37,7 +43,8 @@ npm run typecheck && npm test          # jednostkowe
 npm run test:rls                       # autoryzacja na prawdziwej bazie (wymaga działającego Supabase)
 npm run test:security                  # reguły produkcji + kontrola skryptu + RLS
 npm run test:e2e                       # seed + Playwright (desktop, telefon, tablet, axe) – serwer na porcie 3100
-npm run build && npm run test:prod     # wersja produkcyjna (odrzucanie konta deweloperskiego, brak tras debug)
+npm run build && npm run test:install                  # strona instalacji (iPhone/Android/komputer, QR, ikony)
+npm run test:prod     # wersja produkcyjna (odrzucanie konta deweloperskiego, brak tras debug)
 ```
 `test:e2e` czyści i ponownie zasila bazę deweloperską (seed). Test wygasania czeka ~1 minutę.
 

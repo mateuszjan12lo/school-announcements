@@ -49,7 +49,7 @@ Docker Desktop: zwiększ *Disk image size* (Settings → Resources) – obrazy S
 | `NEXT_PUBLIC_SUPABASE_URL` | URL projektu **DEV** | URL projektu **PROD** |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon **DEV** | anon **PROD** |
 | `SUPABASE_SERVICE_ROLE_KEY` | *(niepotrzebny aplikacji – nie ustawiaj)* | *(nie ustawiaj)* |
-| `NEXT_PUBLIC_APP_URL` | adres Preview | adres produkcyjny |
+| `NEXT_PUBLIC_APP_URL` | *(opcjonalnie)* adres Preview | *(zalecane)* stały adres produkcyjny, np. `https://szkola.example` – to on trafia do kodu QR na `/instalacja` |
 | `APP_ENV` | `development` | `production` |
 
    **Nie ustawiaj** w Production: `DEBUG`, `SEED_ENV`, `DEV_ADMIN_EMAIL`, `DEV_ADMIN_PASSWORD`, `RUN_DEV_SEED` – build się przerwie (kontrola `prebuild`).

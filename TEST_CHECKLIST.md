@@ -30,6 +30,14 @@
 - [ ] [R] `npm run verify:prod-db` na prawdziwej bazie produkcyjnej: ✔ (brak kont dev, hasła testowe odrzucone)
 - [ ] [A] Klucz `service_role` nie występuje w kodzie dla przeglądarki
 
+## Instalacja aplikacji (/instalacja)
+- [ ] [A] Strona po polsku z kodem QR; zeskanowany kod = adres strony instalacji
+- [ ] [A] iPhone: 4 kroki instrukcji (Udostępnij → Dodaj do ekranu początkowego), bez przycisku instalacji
+- [ ] [A] Android: przycisk „Zainstaluj aplikację” po `beforeinstallprompt`; komunikaty po akceptacji/anulowaniu; instrukcja ręczna bez zdarzenia
+- [ ] [A] Uruchomiona jako zainstalowana → „Aplikacja jest już zainstalowana”; manifest z ikonami PNG 192/512/maskable
+- [ ] [R] Prawdziwy Android (Chrome): zeskanuj QR → „Zainstaluj” → ikona na ekranie głównym
+- [ ] [R] Prawdziwy iPhone (Safari): kroki z instrukcji → ikona na ekranie głównym, aplikacja otwiera się bez paska przeglądarki
+
 ## PWA, RWD, dostępność
 - [ ] [A] Offline → komunikat po polsku; [R] instalacja PWA (Chrome/Android, iOS „Dodaj do ekranu głównego”)
 - [ ] [A] Brak poziomego przewijania i przyciski ≥ 44 px (telefon, tablet, desktop); axe WCAG A/AA

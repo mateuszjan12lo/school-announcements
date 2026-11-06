@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AnnouncementCard } from "@/components/AnnouncementCard";
 import { listClasses, listPublic } from "@/lib/data";
 import { nowMs } from "@/lib/dates";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export default async function Feed({ searchParams }: { searchParams: Promise<{ k
   const href = (p: number) => `/?${new URLSearchParams({ ...(active ? { klasa: active } : {}), ...(p ? { strona: String(p) } : {}) })}`;
   return (
     <>
-      <header className="bg-brand text-brandfg"><div className="max-w-3xl mx-auto px-4 py-4"><p className="text-2xl font-bold">🎒 SchoolPulse</p><p className="text-sm opacity-90">Ogłoszenia szkolne</p></div></header>
+      <SiteHeader />
       <main id="main" className="max-w-3xl mx-auto p-4 pb-10">
         <h1 className="text-3xl font-bold">Ogłoszenia</h1>
         <nav aria-label="Filtr klasy" className="mt-3 flex gap-2 overflow-x-auto pb-1">
@@ -29,6 +30,7 @@ export default async function Feed({ searchParams }: { searchParams: Promise<{ k
             {page > 0 ? <Link className="btn" href={href(page - 1)}>← Nowsze</Link> : <span />}
             {hasNext && <Link className="btn" href={href(page + 1)}>Starsze →</Link>}
           </nav>)}
+        <p className="mt-8 text-center"><Link href="/instalacja" className="underline min-h-11 inline-flex items-center">📲 Zainstaluj aplikację na telefonie</Link></p>
       </main>
     </>
   );
