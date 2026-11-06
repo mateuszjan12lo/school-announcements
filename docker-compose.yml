@@ -1,0 +1,18 @@
+# TYLKO ŚRODOWISKO DEWELOPERSKIE (gałąź develop). Nigdy nie wdrażaj tego pliku.
+# Wymaga działającego lokalnego Supabase: `npm run supabase:start` oraz pliku .env.local (patrz TESTING.md).
+services:
+  app:
+    build: { context: ., target: dev }
+    ports: ["3000:3000"]
+    env_file: [.env.development, .env.local]
+    environment:
+      WATCHPACK_POLLING: "true"
+      NEXT_PUBLIC_SUPABASE_URL: http://host.docker.internal:54321   # z kontenera lokalny Supabase jest pod adresem hosta
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: [".:/app", "/app/node_modules", "/app/.next"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s

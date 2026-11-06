@@ -1,0 +1,29 @@
+name: CI
+# Testy wymagające lokalnego Supabase (test:rls, test:e2e) uruchamiasz lokalnie – patrz TESTING.md.
+on:
+  push: { branches: [develop, main] }
+  pull_request: { branches: [develop, main] }
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      IS_MAIN: ${{ github.ref == 'refs/heads/main' || github.base_ref == 'main' }}
+      # Atrapy tylko do zbudowania i uruchomienia testów dymnych (żadne zapytanie nie dociera do prawdziwej bazy):
+      NEXT_PUBLIC_SUPABASE_URL: https://ci-placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-placeholder
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: node --test tests/check-script.test.mjs
+      - name: Kontrola drzewa main (brak kont/danych deweloperskich)
+        if: env.IS_MAIN == 'true'
+        run: npm run check:main
+      - run: npm run build
+        env: { APP_ENV: "${{ env.IS_MAIN == 'true' && 'production' || 'development' }}" }
+      - name: Testy produkcyjne (tylko main)
+        if: env.IS_MAIN == 'true'
+        run: npx playwright install --with-deps chromium && npx playwright test -c playwright.prod.config.ts
